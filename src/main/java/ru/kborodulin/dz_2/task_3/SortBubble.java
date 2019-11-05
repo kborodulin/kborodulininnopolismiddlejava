@@ -5,7 +5,7 @@ package ru.kborodulin.dz_2.task_3;
  */
 public class SortBubble implements Sorting {
     @Override
-    public void sort() {
+    public Person[] sort() {
         PersonArrays personArrays = new PersonArrays();
         personArrays.arrPersonInit();
         PersonComparator personComparator = new PersonComparator();
@@ -24,9 +24,6 @@ public class SortBubble implements Sorting {
             }
         }
 
-        for (Person p : personArrays.arrPerson) {
-            System.out.println(p);
-        }
-
+        return personArrays.arrPerson;
     }
 }
