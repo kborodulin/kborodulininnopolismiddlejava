@@ -1,15 +1,16 @@
 package ru.kborodulin.dz_2.task_3;
 
 public class PersonArrays {
-    public Person[] arrPerson() {
-        int personArraysSize = 5;
-        Person[] arrPerson = new Person[personArraysSize];
+    private int personArraysSize = 10;
+    private int personAge = 100;
+    public Person[] arrPerson = new Person[personArraysSize];
 
+    public Person[] arrPersonInit() {
         for (int elementPerson = 0; elementPerson < personArraysSize; elementPerson++) {
             arrPerson[elementPerson] = new Person(
-                    (int) (Math.random() * 100),
-                    (int) (Math.random() * 100) > 10 && (int) (Math.random() * 100) < 20 ||
-                            (int) (Math.random() * 100) > 50 && (int) (Math.random() * 100) < 70 ? Gender.MAN : Gender.WOMAN,
+                    (int) (Math.random() * personAge),
+                    (int) (Math.random() * personAge) > 10 && (int) (Math.random() * personAge) < 20 ||
+                            (int) (Math.random() * personAge) > 50 && (int) (Math.random() * personAge) < 70 ? Gender.MAN : Gender.WOMAN,
                     "Test" + elementPerson);
         }
 

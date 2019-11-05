@@ -5,6 +5,12 @@ import java.util.Comparator;
 public class PersonComparator implements Comparator<Person> {
     @Override
     public int compare(Person person1, Person person2) {
-        return person1.getAge() - person2.getAge();
+        int gender = person1.getSex().compareTo(person2.getSex());
+        int age = 0;
+        if (gender == 0) {
+            age = person1.getAge() - person2.getAge();
+        }
+
+        return age;
     }
 }
