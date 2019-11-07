@@ -18,7 +18,7 @@ public class MathBox {
         }
     }
 
-    public double summator(Number[] numberSet) {
+    public double summator() {
         double totalSum = 0d;
         for (Number number : numberSet) {
             totalSum += number.doubleValue();

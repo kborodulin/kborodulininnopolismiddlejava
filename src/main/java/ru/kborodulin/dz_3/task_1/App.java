@@ -15,16 +15,15 @@ package ru.kborodulin.dz_3.task_1;
  */
 public class App {
     public static void main(String[] args) {
+        System.out.println("Init Collection----------------------------");
         Number[] arrNumbers = new Number[]{10, 30L, 20, 15, 5, 20, 20.7};
         MathBox mathBox = new MathBox(arrNumbers);
-
-        System.out.println("Init Collection----------------------------");
         for (Object number : mathBox.getNumberSet()) {
             System.out.println(number);
         }
 
         System.out.println("\nSummator----------------------------");
-        System.out.println(mathBox.summator(arrNumbers));
+        System.out.println(mathBox.summator());
 
         System.out.println("\nSplitter----------------------------");
         mathBox.splitter(2);
