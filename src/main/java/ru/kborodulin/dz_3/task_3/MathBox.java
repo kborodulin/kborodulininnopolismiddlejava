@@ -7,7 +7,7 @@ import java.util.Iterator;
 import java.util.Objects;
 import java.util.Set;
 
-public class MathBox extends ObjectBox{
+public class MathBox<T extends ObjectBox> {
     private Set<Number> numberSet = new HashSet<>();
 
     public Set<Number> getNumberSet() {

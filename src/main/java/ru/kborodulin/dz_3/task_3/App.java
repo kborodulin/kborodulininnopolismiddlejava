@@ -10,8 +10,7 @@ import java.util.List;
  */
 public class App {
     public static void main(String[] args) {
-        List list = new ArrayList();
-        list.add(new MathBox( new Number[]{10, 30L, 20, 15, 5, 20, 20.7}));
-
+        MathBox<ObjectBox> mathBox =new MathBox<>(new Number[]{10, 30L, 20, 15, 5, 20, 20.7});
+        // MathBox<Object> objectMathBox = new MathBox<>(new Number[]{10, 30L, 20, 15, 5, 20, 20.7});
     }
 }

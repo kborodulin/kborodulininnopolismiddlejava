@@ -11,6 +11,10 @@ public class ObjectBox {
         return set;
     }
 
+    public void setSet(Set set) {
+        this.set = set;
+    }
+
     public void addObject(Object object) {
         set.add(object);
     }
