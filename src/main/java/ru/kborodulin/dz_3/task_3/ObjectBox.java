@@ -1,4 +1,4 @@
-package ru.kborodulin.dz_3.task_2;
+package ru.kborodulin.dz_3.task_3;
 
 import java.util.HashSet;
 import java.util.Objects;

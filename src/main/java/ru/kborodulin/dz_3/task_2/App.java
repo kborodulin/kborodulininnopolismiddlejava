@@ -1,5 +1,12 @@
 package ru.kborodulin.dz_3.task_2;
 
+/**
+ * Задание 2. Создать класс ObjectBox, который будет хранить коллекцию Object.
+ * <p>
+ * У класса должен быть метод addObject, добавляющий объект в коллекцию.
+ * У класса должен быть метод deleteObject, проверяющий наличие объекта в коллекции и при наличии удаляющий его.
+ * Должен быть метод dump, выводящий содержимое коллекции в строку.
+ */
 public class App {
     public static void main(String[] args) {
         ObjectBox objectBox = new ObjectBox();
