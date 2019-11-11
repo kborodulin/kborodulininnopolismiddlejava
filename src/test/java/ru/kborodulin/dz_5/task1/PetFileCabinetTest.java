@@ -71,7 +71,7 @@ public class PetFileCabinetTest {
         Animal animal3 = new Animal("animal3", person3, 15);
         petFileCabinet.addAnimal(animal3);
 
-        long id = petFileCabinet.getAnimalList().get(1).getUNIQUE_NUMBER();
+        long id = petFileCabinet.getAnimalList().get(1).getUniqueNumber();
         Animal animalOld = petFileCabinet.getAnimalList().get(1);
         System.out.println(animalOld);
         Animal animalNew = petFileCabinet.renameAnimal(id, "test", null, null);

@@ -6,7 +6,7 @@ import java.util.Objects;
  * Животное
  */
 public class Animal implements Comparable<Animal> {
-    private final long UNIQUE_NUMBER = System.nanoTime();
+    private long uniqueNumber = System.nanoTime();
     private String name;
     private Person person;
     private int weight;
@@ -17,8 +17,8 @@ public class Animal implements Comparable<Animal> {
         this.weight = weight;
     }
 
-    public long getUNIQUE_NUMBER() {
-        return UNIQUE_NUMBER;
+    public long getUniqueNumber() {
+        return uniqueNumber;
     }
 
     public String getName() {
@@ -68,7 +68,7 @@ public class Animal implements Comparable<Animal> {
     @Override
     public String toString() {
         return "Animal{" +
-                "UNIQUE_NUMBER=" + UNIQUE_NUMBER +
+                "uniqueNumber=" + uniqueNumber +
                 ", name='" + name + '\'' +
                 ", person=" + person +
                 ", weight=" + weight +

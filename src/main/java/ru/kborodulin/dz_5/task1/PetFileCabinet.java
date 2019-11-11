@@ -42,7 +42,7 @@ public class PetFileCabinet {
     public Animal renameAnimal(long id, String name, Person person, Integer weight) {
         Animal animal = null;
         for (Animal animalOld : animalList) {
-            if (animalOld.getUNIQUE_NUMBER() == id) {
+            if (animalOld.getUniqueNumber() == id) {
                 animal = animalOld;
                 break;
             }
