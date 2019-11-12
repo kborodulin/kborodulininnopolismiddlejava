@@ -1,4 +1,4 @@
-package ru.kborodulin.dz_2.task_2;
+package ru.innopolis.dz_2.task_2;
 
 import java.util.Random;
 

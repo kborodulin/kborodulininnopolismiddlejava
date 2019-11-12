@@ -1,4 +1,4 @@
-package ru.kborodulin.dz_2.task_3;
+package ru.innopolis.dz_2.task_3;
 
 /**
  * Сортировка выбором

@@ -1,4 +1,4 @@
-package ru.kborodulin.dz_2.task_2;
+package ru.innopolis.dz_2.task_2;
 
 /**
  * Задание 2. Составить программу, генерирующую N случайных чисел.

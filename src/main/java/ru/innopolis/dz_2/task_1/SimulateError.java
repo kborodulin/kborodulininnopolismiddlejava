@@ -1,4 +1,4 @@
-package ru.kborodulin.dz_2.task_1;
+package ru.innopolis.dz_2.task_1;
 
 public class SimulateError {
     /**
