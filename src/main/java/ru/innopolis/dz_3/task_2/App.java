@@ -1,4 +1,4 @@
-package ru.kborodulin.dz_3.task_2;
+package ru.innopolis.dz_3.task_2;
 
 /**
  * Задание 2. Создать класс ObjectBox, который будет хранить коллекцию Object.

@@ -1,4 +1,4 @@
-package ru.kborodulin.dz_3.task_3;
+package ru.innopolis.dz_3.task_3;
 
 import ru.kborodulin.dz_3.task_1.ServiceNumber;
 

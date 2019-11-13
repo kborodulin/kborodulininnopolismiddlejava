@@ -1,4 +1,4 @@
-package ru.kborodulin.dz_3.task_1;
+package ru.innopolis.dz_3.task_1;
 
 import java.util.HashSet;
 import java.util.Iterator;

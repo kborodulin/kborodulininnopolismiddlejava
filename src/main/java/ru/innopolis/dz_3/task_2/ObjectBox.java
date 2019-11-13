@@ -1,21 +1,21 @@
-package ru.kborodulin.dz_3.task_3;
+package ru.innopolis.dz_3.task_2;
 
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-public class ObjectBox<T> {
-    private Set<T[]> set = new HashSet();
+public class ObjectBox {
+    private Set set = new HashSet();
 
     public Set getSet() {
         return set;
     }
 
-    public void addObject(T[] object) {
+    public void addObject(Object object) {
         set.add(object);
     }
 
-    public void deleteObject(T[] object) {
+    public void deleteObject(Object object) {
         if (set.contains(object)) {
             set.remove(object);
         }
@@ -23,10 +23,8 @@ public class ObjectBox<T> {
 
     public String dump() {
         String str = "";
-        for (T[] setConvertArr : set) {
-            for (T setConvertStr : setConvertArr) {
-                str += setConvertStr + " ";
-            }
+        for (Object setConvertStr : set) {
+            str+= setConvertStr + " ";
         }
         return str;
     }
@@ -35,7 +33,7 @@ public class ObjectBox<T> {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ObjectBox<?> objectBox = (ObjectBox<?>) o;
+        ObjectBox objectBox = (ObjectBox) o;
         return Objects.equals(set, objectBox.set);
     }
 

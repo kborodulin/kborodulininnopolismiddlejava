@@ -1,6 +1,8 @@
-package ru.kborodulin.dz_3.task3;
+package ru.innopolis.dz_3.task3;
 
 import org.junit.Test;
+import ru.innopolis.dz_3.task_3.MathBox;
+import ru.innopolis.dz_3.task_3.ObjectBox;
 import ru.kborodulin.dz_3.task_3.MathBox;
 import ru.kborodulin.dz_3.task_3.ObjectBox;
 
