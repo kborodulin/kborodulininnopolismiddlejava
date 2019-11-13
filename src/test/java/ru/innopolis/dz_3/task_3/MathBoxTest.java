@@ -1,10 +1,6 @@
-package ru.innopolis.dz_3.task3;
+package ru.innopolis.dz_3.task_3;
 
 import org.junit.Test;
-import ru.innopolis.dz_3.task_3.MathBox;
-import ru.innopolis.dz_3.task_3.ObjectBox;
-import ru.innopolis.dz_3.task_3.MathBox;
-import ru.innopolis.dz_3.task_3.ObjectBox;
 
 public class MathBoxTest {
     @Test
