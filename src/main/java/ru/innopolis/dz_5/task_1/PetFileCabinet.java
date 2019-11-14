@@ -1,4 +1,4 @@
-package ru.kborodulin.dz_5.task1;
+package ru.innopolis.dz_5.task_1;
 
 import java.util.ArrayList;
 import java.util.Collections;
