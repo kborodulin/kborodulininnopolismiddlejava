@@ -34,16 +34,6 @@ public class MathBox<T extends Number> extends ObjectBox<T> {
         }
     }
 
-    @Override
-    public void addObject(T[] object) {
-        super.addObject(object);
-    }
-
-    @Override
-    public void deleteObject(T[] object) {
-        super.deleteObject(object);
-    }
-
     public void splitter(T divider) {
         Set<T> numberSetTmp = new HashSet<>();
         for (Iterator<T> iterator = numberSet.iterator(); iterator.hasNext(); ) {
@@ -55,17 +45,13 @@ public class MathBox<T extends Number> extends ObjectBox<T> {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        MathBox<?> mathBox = (MathBox<?>) o;
-        return Objects.equals(numberSet, mathBox.numberSet);
+    public void addObject(T object) {
+        super.addObject(object);
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), numberSet);
+    public void deleteObject(T object) {
+        super.deleteObject(object);
     }
 
     @Override
