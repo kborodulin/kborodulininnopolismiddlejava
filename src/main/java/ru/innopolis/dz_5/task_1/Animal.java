@@ -1,12 +1,13 @@
 package ru.innopolis.dz_5.task_1;
 
 import java.util.Objects;
+import java.util.UUID;
 
 /**
  * Животное
  */
-public class Animal implements Comparable<Animal> {
-    private long uniqueNumber = System.nanoTime();
+public class Animal {
+    private final String uniqueNumber = UUID.randomUUID().toString();
     private String name;
     private Person person;
     private int weight;
@@ -17,7 +18,7 @@ public class Animal implements Comparable<Animal> {
         this.weight = weight;
     }
 
-    public long getUniqueNumber() {
+    public String getUniqueNumber() {
         return uniqueNumber;
     }
 
@@ -25,20 +26,20 @@ public class Animal implements Comparable<Animal> {
         return name;
     }
 
-    public Person getPerson() {
-        return person;
-    }
-
-    public int getWeight() {
-        return weight;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
 
+    public Person getPerson() {
+        return person;
+    }
+
     public void setPerson(Person person) {
         this.person = person;
+    }
+
+    public int getWeight() {
+        return weight;
     }
 
     public void setWeight(int weight) {
@@ -46,29 +47,22 @@ public class Animal implements Comparable<Animal> {
     }
 
     @Override
-    public int compareTo(Animal animal) {
-        return this.name.compareTo(animal.getName());
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Animal animal = (Animal) o;
-        return weight == animal.weight &&
-                Objects.equals(name, animal.name) &&
-                Objects.equals(person, animal.person);
+        return Objects.equals(uniqueNumber, animal.uniqueNumber);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, person, weight);
+        return Objects.hash(uniqueNumber);
     }
 
     @Override
     public String toString() {
         return "Animal{" +
-                "uniqueNumber=" + uniqueNumber +
+                "uniqueNumber='" + uniqueNumber + '\'' +
                 ", name='" + name + '\'' +
                 ", person=" + person +
                 ", weight=" + weight +
