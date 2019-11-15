@@ -7,18 +7,18 @@ import java.util.Set;
 
 public class FileOperationTest {
     @Test
-    public void readLineFileTest() throws IOException {
+    public void readAllLinesFileTest() throws IOException {
         FileOperation fileOperation = new FileOperation();
-        Set<String> stringSet = fileOperation.readLineFile("src/main/java/ru/innopolis/dz_6/task_1", "products.txt");
+        Set<String> stringSet = fileOperation.readAllLinesFile("src/main/java/ru/innopolis/dz_6/task_1", "products.txt");
         for (String str : stringSet) {
             System.out.println(str);
         }
     }
 
     @Test
-    public void addLineFileTest() throws IOException {
+    public void addAllLinesFileTest() throws IOException {
         FileOperation fileOperation = new FileOperation();
-        Set<String> stringSet = fileOperation.readLineFile("src/main/java/ru/innopolis/dz_6/task_1", "products.txt");
-        fileOperation.addLineFile("src/main/java/ru/innopolis/dz_6/task_1", "rezult.txt", "UTF-8", stringSet);
+        Set<String> stringSet = fileOperation.readAllLinesFile("src/main/java/ru/innopolis/dz_6/task_1", "products.txt");
+        fileOperation.addAllLinesFile("src/main/java/ru/innopolis/dz_6/task_1", "rezult.txt", "UTF-8", stringSet);
     }
 }

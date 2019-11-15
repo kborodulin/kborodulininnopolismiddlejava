@@ -17,7 +17,7 @@ public class FileOperation {
     /**
      * Чтение файла
      */
-    public Set readLineFile(String pathFile, String fileName) throws IOException {
+    public Set readAllLinesFile(String pathFile, String fileName) throws IOException {
         Set<String> stringSet = new TreeSet<>(String.CASE_INSENSITIVE_ORDER);
         try (BufferedReader reader = Files.newBufferedReader(Paths.get(pathFile + File.separator + fileName))) {
             while (reader.ready()) {
@@ -33,7 +33,7 @@ public class FileOperation {
     /**
      * Запись файла
      */
-    public void addLineFile(String pathFile, String fileName, String charset, Set<String> set) throws IOException {
+    public void addAllLinesFile(String pathFile, String fileName, String charset, Set<String> set) throws IOException {
         try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(pathFile + File.separator + fileName),
                 Charset.forName(charset))) {
             for (String line : set) {
