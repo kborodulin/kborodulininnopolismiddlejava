@@ -22,4 +22,13 @@ public class AppTest {
         app.appRun(list);
         Factorial.getFactorialMap().forEach((key, value) -> System.out.println(key + " : " + value));
     }
+
+    @Test
+    public void factorialBufferedNumber() {
+        BufferedFactorial bufferedFactorial = new BufferedFactorial();
+        for (int num = 1; num <= 10; num++) {
+            bufferedFactorial.factorialBufferedNumber(num);
+        }
+        Assert.assertEquals("Факториал числа: " + BufferedFactorial.getFactorialBufferedMap().get(5), "Факториал числа: 120");
+    }
 }

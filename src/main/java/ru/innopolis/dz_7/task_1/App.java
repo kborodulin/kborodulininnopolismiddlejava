@@ -6,12 +6,21 @@ import java.util.concurrent.Executors;
 
 public class App {
     public static final int FIXEDTHREADPOOL = 10;
+    public static final int FACTORMAXNUMBER = 5000;
 
     public void appRun(List<Integer> integerList) {
+        // Создаем пул потоков
         ExecutorService executorService = Executors.newFixedThreadPool(FIXEDTHREADPOOL);
-        for (int i = 0; i < integerList.size(); i++) {
+        // Буферизация массива факториала
+        BufferedFactorial bufferedFactorial = new BufferedFactorial();
+        for (int num = 0; num < FACTORMAXNUMBER; num++) {
+            bufferedFactorial.factorialBufferedNumber(FACTORMAXNUMBER);
+        }
+        // Вычисление факториала для числа
+        for (int num = 0; num < integerList.size(); num++) {
             executorService.submit(new FactorialThread(integerList));
         }
+        // Закрываем пул потоков
         executorService.shutdown();
     }
 }
