@@ -7,6 +7,7 @@ public class Person implements Serializable {
     private int id;
     private String name;
     private int age;
+    private boolean PassportAvailability;
 
     public int getId() {
         return id;
@@ -32,12 +33,22 @@ public class Person implements Serializable {
         this.age = age;
     }
 
+
+    public boolean isPassportAvailability() {
+        return PassportAvailability;
+    }
+
+    public void setPassportAvailability(boolean passportAvailability) {
+        PassportAvailability = passportAvailability;
+    }
+
     @Override
     public String toString() {
         return "Person{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", age=" + age +
+                ", PassportAvailability=" + PassportAvailability +
                 '}';
     }
 }
