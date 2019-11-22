@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
 public class AppTest {
-    private static final String FILE_NAME = "src/test/java/ru/innopolis/dz_8/task_1/file";
+    private static final String FILE_NAME = "src/test/java/ru/innopolis/dz_8/task_1/file.txt";
 
     @Test
     public void serializeTest() throws IOException, InvocationTargetException, IllegalAccessException, NoSuchFieldException, NoSuchMethodException, InstantiationException {
