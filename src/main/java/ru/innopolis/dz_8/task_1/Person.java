@@ -1,13 +1,11 @@
 package ru.innopolis.dz_8.task_1;
 
-import java.io.Serializable;
-
-public class Person implements Serializable {
-    private static final long serialVersionUID = -3134155455600680619L;
+public class Person {
     private int id;
     private String name;
     private int age;
-    private boolean PassportAvailability;
+    private boolean resident;
+    private Passport passport;
 
     public int getId() {
         return id;
@@ -33,13 +31,20 @@ public class Person implements Serializable {
         this.age = age;
     }
 
-
-    public boolean isPassportAvailability() {
-        return PassportAvailability;
+    public boolean isResident() {
+        return resident;
     }
 
-    public void setPassportAvailability(boolean passportAvailability) {
-        PassportAvailability = passportAvailability;
+    public void setResident(boolean resident) {
+        this.resident = resident;
+    }
+
+    public Passport getPassport() {
+        return passport;
+    }
+
+    public void setPassport(Passport passport) {
+        this.passport = passport;
     }
 
     @Override
@@ -48,7 +53,8 @@ public class Person implements Serializable {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", age=" + age +
-                ", PassportAvailability=" + PassportAvailability +
+                ", resident=" + resident +
+                ", passport=" + passport +
                 '}';
     }
 }

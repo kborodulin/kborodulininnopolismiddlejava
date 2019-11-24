@@ -7,10 +7,10 @@ public interface Serialization {
     /**
      * Сериализация объекта в файл
      */
-    void serialize(Object object, String file) throws IOException, InvocationTargetException, IllegalAccessException, NoSuchFieldException, NoSuchMethodException, InstantiationException;
+    void serialize(Object object, String file) throws IOException, InvocationTargetException, IllegalAccessException, NoSuchFieldException, NoSuchMethodException, InstantiationException, ClassNotFoundException;
 
     /**
      * Десериализация объекта из файла
      */
-    Object deSerialize(String file) throws IOException, ClassNotFoundException;
+    Object deSerialize(String file) throws IOException, ClassNotFoundException, IllegalAccessException, InstantiationException, InvocationTargetException;
 }
