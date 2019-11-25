@@ -30,6 +30,5 @@ public class AppTest {
         App app = new App();
         Object object = app.deSerialize(FILE_NAME);
         System.out.println("\n" + object);
-        Person person = (Person) object;
     }
 }

@@ -54,7 +54,6 @@ public class App implements Serialization {
                     if (str.indexOf(method.getName().substring(3).toLowerCase()) == 3 && !str.endsWith("{")) {
                         str = textUtils.removeComma(str.substring(str.indexOf("\":") + 2));
                         method.invoke(passport, textUtils.castText(str));
-                        System.out.println(str);
                         break;
                     }
                 }
