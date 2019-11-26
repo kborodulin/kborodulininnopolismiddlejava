@@ -1,6 +1,9 @@
 package ru.innopolis.dz_8.task_1;
 
-public class Passport {
+import java.io.Serializable;
+
+public class Passport implements Serializable {
+    private static final long serialVersionUID = -874008891428610449L;
     private int id;
     private String seria;
     private String nomer;

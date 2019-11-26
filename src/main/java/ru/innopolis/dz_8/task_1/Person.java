@@ -1,6 +1,9 @@
 package ru.innopolis.dz_8.task_1;
 
-public class Person {
+import java.io.Serializable;
+
+public class Person implements Serializable {
+    private static final long serialVersionUID = 553724741462690620L;
     private int id;
     private String name;
     private int age;
