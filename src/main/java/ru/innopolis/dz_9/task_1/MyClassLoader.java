@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 public class MyClassLoader extends ClassLoader {
     @Override
     public Class<?> loadClass(String name) throws ClassNotFoundException {
-        if (name.endsWith(".SomeClass")) {
+        if (name.endsWith("SomeClass.class")) {
             return findClass(name);
         }
         return super.loadClass(name);
@@ -15,10 +15,11 @@ public class MyClassLoader extends ClassLoader {
 
     @Override
     protected Class<?> findClass(String name) throws ClassNotFoundException {
-        if (name.endsWith(".SomeClass")) {
+        if (name.endsWith("SomeClass.class")) {
             try {
-                byte[] bytes = Files.readAllBytes(Paths.get("C:\\Temp\\20191128\\SomeClass.class"));
-                return defineClass(name, bytes, 0, bytes.length);
+                byte[] bytes = Files.readAllBytes(Paths.get(name));
+                return defineClass(name.substring(name.indexOf("ru/innopolis"), name.length() - 6)
+                        .replace("/", "."), bytes, 0, bytes.length);
             } catch (IOException e) {
                 e.printStackTrace();
             }
