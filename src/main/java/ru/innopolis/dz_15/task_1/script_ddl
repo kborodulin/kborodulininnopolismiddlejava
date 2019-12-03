@@ -1,0 +1,23 @@
+create table users (
+  id int,
+  name varchar(100),
+  birthday timestamp,
+  login_id int,
+  city varchar(100),
+  email varchar(100),
+  description varchar(100)
+);
+
+create table role (
+ id int,
+ name varchar(100),
+ description varchar(100),
+ check(name = 'Administration' or  name = 'Clients' or name = 'Billing')
+);
+
+create table user_role (
+  id int,
+  user_id int,
+  role_id int
+);
+
