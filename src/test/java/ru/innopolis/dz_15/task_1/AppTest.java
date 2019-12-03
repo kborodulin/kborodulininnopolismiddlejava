@@ -26,4 +26,10 @@ public class AppTest {
         App app = new App();
         app.task_4a();
     }
+
+    @Test
+    public void task_4bTest() {
+        App app = new App();
+        app.task_4b();
+    }
 }
