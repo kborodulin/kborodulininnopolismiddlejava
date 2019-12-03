@@ -66,4 +66,26 @@ public class App {
             e.printStackTrace();
         }
     }
+
+    /**
+     * 4)      Перевести connection в ручное управление транзакциями
+     * a)      Выполнить 2-3 SQL операции на ваше усмотрение (например, Insert в 3 таблицы – USER, ROLE, USER_ROLE)
+     * между sql операциями установить логическую точку сохранения(SAVEPOINT)
+     */
+    public void task_4a() {
+        try (Connection connection = ConnectionDB.connectDB()) {
+            connection.setAutoCommit(false);
+            Statement statement = connection.createStatement();
+            statement.execute("insert into users(login_id, name) values(10, 'test')");
+            statement.execute("insert into users(login_id, name) values(11, 'test2')");
+            Savepoint point = connection.setSavepoint();
+            statement.execute("insert into users(login_id, name) values(15, 'test')");
+            statement.execute("insert into users(login_id, name) values(16, 'test2')");
+            connection.rollback(point);
+            connection.setAutoCommit(true);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

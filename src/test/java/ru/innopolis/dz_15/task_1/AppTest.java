@@ -20,4 +20,10 @@ public class AppTest {
         App app = new App();
         app.task_3();
     }
+
+    @Test
+    public void task_4aTest() {
+        App app = new App();
+        app.task_4a();
+    }
 }
