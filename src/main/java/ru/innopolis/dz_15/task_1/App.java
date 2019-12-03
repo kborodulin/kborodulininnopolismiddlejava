@@ -20,7 +20,7 @@ public class App {
             String sqlRole = "insert into role (id, name, description) values (?, ?, ?)";
             PreparedStatement preparedStatementRole = connection.prepareStatement(sqlRole);
             preparedStatementRole.setInt(1, 1);
-            preparedStatementRole.setString(2, RoleName.Billing.name());
+            preparedStatementRole.setString(2, RoleName.BILLING.getName());
             preparedStatementRole.setString(3, "desc1");
             preparedStatementRole.execute();
         } catch (SQLException e) {
