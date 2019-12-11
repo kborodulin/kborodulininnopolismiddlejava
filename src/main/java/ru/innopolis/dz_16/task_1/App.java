@@ -7,7 +7,7 @@ import java.sql.*;
 import java.time.LocalDate;
 
 public class App {
-    private static Logger logger = LoggerFactory.getLogger(App.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
     /**
      * 2)      Через jdbc интерфейс сделать запись данных(INSERT) в таблицу
@@ -15,7 +15,7 @@ public class App {
      */
     public void task_2a() {
         try (Connection connection = ConnectionDB.connectDB()) {
-            logger.info("Вставим запись в таблицу users;");
+            LOGGER.info("Вставим запись в таблицу users;");
             int primaryKey = 1;
             String sqlUser = "insert into users (id, name, birthday) values (?, ?, ?)";
             PreparedStatement preparedStatementUser = connection.prepareStatement(sqlUser);
@@ -23,7 +23,7 @@ public class App {
             preparedStatementUser.setString(2, "test1");
             preparedStatementUser.setDate(3, Date.valueOf(LocalDate.now()));
             preparedStatementUser.execute();
-            logger.info("Запись в таблицу с id = " + primaryKey + " успешно вставлена;");
+            LOGGER.info("Запись в таблицу с id = {} успешно вставлена;", primaryKey);
 
             String sqlRole = "insert into role (id, name, description) values (?, ?, ?)";
             PreparedStatement preparedStatementRole = connection.prepareStatement(sqlRole);
@@ -32,7 +32,7 @@ public class App {
             preparedStatementRole.setString(3, "desc1");
             preparedStatementRole.execute();
         } catch (SQLException e) {
-            logger.error(e.getMessage(), e);
+            LOGGER.error(e.getMessage(), e);
             e.printStackTrace();
         }
     }
@@ -43,7 +43,7 @@ public class App {
      */
     public void task_2b() {
         try (Connection connection = ConnectionDB.connectDB()) {
-            logger.info("Вставим запись в таблицу users черех Batch;");
+            LOGGER.info("Вставим запись в таблицу users черех Batch;");
             PreparedStatement preparedStatement = null;
             preparedStatement = connection.prepareStatement("insert into users (id, name) values (?, ?)");
             preparedStatement.setInt(1, 1);
@@ -54,9 +54,9 @@ public class App {
             preparedStatement.setString(2, "test2");
             preparedStatement.addBatch();
             preparedStatement.executeBatch();
-            logger.info("Записи в таблицу users успешно вставлены через Batch;");
+            LOGGER.info("Записи в таблицу users успешно вставлены через Batch;");
         } catch (SQLException e) {
-            logger.error(e.getMessage(), e);
+            LOGGER.error(e.getMessage(), e);
             e.printStackTrace();
         }
     }
@@ -66,7 +66,7 @@ public class App {
      */
     public void task_3() {
         try (Connection connection = ConnectionDB.connectDB()) {
-            logger.info("Сделана выборка по login_ID и name;");
+            LOGGER.info("Сделана выборка по login_ID и name;");
             String sql = "select * from users where login_id = ? and name = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, 10);
@@ -76,7 +76,7 @@ public class App {
                 System.out.println(resultSet.getInt("id") + " " + resultSet.getString("name"));
             }
         } catch (SQLException e) {
-            logger.error(e.getMessage(), e);
+            LOGGER.error(e.getMessage(), e);
             e.printStackTrace();
         }
     }
@@ -97,9 +97,9 @@ public class App {
             statement.execute("insert into users(login_id, name) values(16, 'test2')");
             connection.rollback(point);
             connection.setAutoCommit(true);
-            logger.info("Эксперементы с SAVEPOINT;");
+            LOGGER.info("Эксперементы с SAVEPOINT;");
         } catch (SQLException e) {
-            logger.error(e.getMessage(), e);
+            LOGGER.error(e.getMessage(), e);
             e.printStackTrace();
         }
     }
@@ -113,7 +113,7 @@ public class App {
      */
     public void task_4b() {
         try (Connection connection = ConnectionDB.connectDB()) {
-            logger.info("Эксперементы с SAVEPOINT с ошибкой;");
+            LOGGER.info("Эксперементы с SAVEPOINT с ошибкой;");
             connection.setAutoCommit(false);
             Statement statement = connection.createStatement();
             statement.execute("insert into users(login_id, name) values(10, 'test')");
@@ -126,12 +126,12 @@ public class App {
             try {
                 statement.execute("insert into role(name) values('test')");
             } catch (Exception e) {
-                logger.error(e.getMessage(), e);
+                LOGGER.error(e.getMessage(), e);
                 connection.rollback(pointA);
             }
             connection.setAutoCommit(true);
         } catch (SQLException e) {
-            logger.error(e.getMessage(), e);
+            LOGGER.error(e.getMessage(), e);
             e.printStackTrace();
         }
     }
