@@ -4,13 +4,15 @@ import java.io.*;
 import java.net.Socket;
 
 public class ClientHandler implements Runnable {
-    private static final String CHARSET_NAME = "CP1251";
+    private static final String CHARSET_NAME = "Cp1251";
+    private Socket сlientSocket;
     private String clientName;
     private String message;
     private BufferedReader readMessage;
     private BufferedWriter writeMessage;
 
     public ClientHandler(Socket сlientSocket) throws IOException {
+        this.сlientSocket = сlientSocket;
         this.writeMessage = new BufferedWriter(new OutputStreamWriter(сlientSocket.getOutputStream(), CHARSET_NAME));
         this.readMessage = new BufferedReader(new InputStreamReader(сlientSocket.getInputStream(), CHARSET_NAME));
     }
@@ -25,7 +27,7 @@ public class ClientHandler implements Runnable {
             // Считаем имя клиента
             clientName = readMessage.readLine();
             System.out.println("Участник " + clientName + " зашел в чат!!!");
-            while (true) {
+            while (сlientSocket.getInputStream().read() != -1) {
                 // Считываем сообщение от клиента
                 message = readMessage.readLine();
 
@@ -56,6 +58,9 @@ public class ClientHandler implements Runnable {
                     }
                 }
             }
+            Server.clients.remove(this);
+            writeMessage.close();
+            readMessage.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
