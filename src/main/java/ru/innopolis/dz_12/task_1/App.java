@@ -1,4 +1,4 @@
-package ru.innopolis.task_1;
+package ru.innopolis.dz_12.task_1;
 
 import java.util.Random;
 import java.util.concurrent.TimeUnit;

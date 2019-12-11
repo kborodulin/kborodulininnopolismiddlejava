@@ -1,4 +1,4 @@
-package ru.innopolis.task_2;
+package ru.innopolis.dz_12.task_2;
 
 import java.util.ArrayList;
 import java.util.List;
