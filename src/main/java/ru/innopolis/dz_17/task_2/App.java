@@ -9,8 +9,8 @@ public class App {
      * 2)      Через jdbc интерфейс сделать запись данных(INSERT) в таблицу
      * a)      Используя параметризированный запрос
      */
-    public void task_2a(Connection connection) {
-        try {
+    public void task_2a(ConnectionDB connectionDB) {
+        try (Connection connection = connectionDB.connectDB()) {
             String sqlUser = "insert into users (id, name, birthday) values (?, ?, ?)";
             PreparedStatement preparedStatementUser = connection.prepareStatement(sqlUser);
             preparedStatementUser.setInt(1, 1);
@@ -33,8 +33,8 @@ public class App {
      * 2)      Через jdbc интерфейс сделать запись данных(INSERT) в таблицу
      * b)      Используя batch процесс
      */
-    public void task_2b(Connection connection) {
-        try {
+    public void task_2b(ConnectionDB connectionDB) {
+        try (Connection connection = connectionDB.connectDB()) {
             PreparedStatement preparedStatement = null;
             preparedStatement = connection.prepareStatement("insert into users (id, name) values (?, ?)");
             preparedStatement.setInt(1, 1);
@@ -53,8 +53,8 @@ public class App {
     /**
      * 3)      Сделать параметризированную выборку по login_ID и name одновременно
      */
-    public void task_3(Connection connection) {
-        try {
+    public void task_3(ConnectionDB connectionDB) {
+        try (Connection connection = connectionDB.connectDB()) {
             String sql = "select * from users where login_id = ? and name = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, 10);
@@ -73,8 +73,8 @@ public class App {
      * a)      Выполнить 2-3 SQL операции на ваше усмотрение (например, Insert в 3 таблицы – USER, ROLE, USER_ROLE)
      * между sql операциями установить логическую точку сохранения(SAVEPOINT)
      */
-    public void task_4a(Connection connection) {
-        try {
+    public void task_4a(ConnectionDB connectionDB) {
+        try (Connection connection = connectionDB.connectDB()) {
             connection.setAutoCommit(false);
             Statement statement = connection.createStatement();
             statement.execute("insert into users(login_id, name) values(10, 'test')");
@@ -96,8 +96,8 @@ public class App {
      * намеренно ввести некорректные данные на последней операции,
      * что бы транзакция откатилась к логической точке SAVEPOINT A
      */
-    public void task_4b(Connection connection) {
-        try {
+    public void task_4b(ConnectionDB connectionDB) throws SQLException {
+        try (Connection connection = connectionDB.connectDB()) {
             connection.setAutoCommit(false);
             Statement statement = connection.createStatement();
             statement.execute("insert into users(login_id, name) values(10, 'test')");

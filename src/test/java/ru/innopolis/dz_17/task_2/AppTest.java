@@ -1,52 +1,70 @@
 package ru.innopolis.dz_17.task_2;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.Spy;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import static org.mockito.Mockito.*;
+
+@RunWith(MockitoJUnitRunner.class)
 public class AppTest {
+    @Mock
     private Connection connection;
 
-    @Before
-    public void openConnectionDB() throws SQLException {
-        connection = ConnectionDB.connectDB();
-    }
+    @Mock
+    private PreparedStatement preparedStatement;
 
-    @After
-    public void closeConnectionDB() throws SQLException {
-        connection.close();
+    @Mock
+    private ResultSet resultSet;
+
+    @Spy
+    private ConnectionDB connectionDB;
+
+    @Test
+    public void task_2aTest() throws SQLException {
+        when(connectionDB.connectDB()).thenReturn(connection);
+        when(connection.prepareStatement(any())).thenReturn(preparedStatement);
+        App app = new App();
+        app.task_2a(connectionDB);
     }
 
     @Test
-    public void task_2aTest() {
+    public void task_2bTest() throws SQLException {
+        when(connectionDB.connectDB()).thenReturn(connection);
+        when(connection.prepareStatement(any())).thenReturn(preparedStatement);
         App app = new App();
-        app.task_2a(connection);
+        app.task_2b(connectionDB);
     }
 
     @Test
-    public void task_2bTest() {
+    public void task_3Test() throws SQLException {
+        when(connectionDB.connectDB()).thenReturn(connection);
+        when(connection.prepareStatement(any())).thenReturn(preparedStatement);
+        when(connection.prepareStatement(any()).executeQuery()).thenReturn(resultSet);
         App app = new App();
-        app.task_2b(connection);
+        app.task_3(connectionDB);
     }
 
     @Test
-    public void task_3Test() {
+    public void task_4aTest() throws SQLException {
+        when(connectionDB.connectDB()).thenReturn(connection);
+        when(connection.createStatement()).thenReturn(preparedStatement);
         App app = new App();
-        app.task_3(connection);
+        app.task_4a(connectionDB);
     }
 
     @Test
-    public void task_4aTest() {
+    public void task_4bTest() throws SQLException {
+        when(connectionDB.connectDB()).thenReturn(connection);
+        when(connection.createStatement()).thenReturn(preparedStatement);
         App app = new App();
-        app.task_4a(connection);
-    }
-
-    @Test
-    public void task_4bTest() {
-        App app = new App();
-        app.task_4b(connection);
+        app.task_4b(connectionDB);
     }
 }
