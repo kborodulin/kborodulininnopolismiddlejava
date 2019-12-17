@@ -1,6 +1,7 @@
 package ru.innopolis.dz_11.task_1;
 
 import java.util.*;
+import java.util.function.Predicate;
 
 /**
  * Картотека домашних животных
@@ -24,16 +25,18 @@ public class PetFileCabinet {
      */
     public void addAnimal(Animal animal) throws Exception {
         // Проверка животного на дубликат в системе
-        if (listHashMap.containsKey(animal.getName())) {
+        Predicate<String> stringPredicate = x -> listHashMap.containsKey(x);
+        if (stringPredicate.test(animal.getName())) {
             List<Person> personList = listHashMap.get(animal.getName());
-            if (personList.contains(animal.getPerson())) {
+            Predicate<Person> personPredicate = x -> personList.contains(x);
+            if (personPredicate.test(animal.getPerson())) {
                 throw new Exception("Животное уже есть в системе!!!" +
                         " Кличка: " + animal.getName() + " Хозяин: " + animal.getPerson());
             }
         }
 
         // Заполняем отношение Кличка - Список хозяинов
-        if (listHashMap.containsKey(animal.getName())) {
+        if (stringPredicate.test(animal.getName())) {
             List<Person> personList = listHashMap.get(animal.getName());
             personList.add(animal.getPerson());
         } else {
@@ -51,7 +54,8 @@ public class PetFileCabinet {
      * Поиск животного
      */
     public Animal findAnimalByName(String name, Person person) {
-        if (person == null) {
+        Predicate<Person> personPredicate = x -> x == null;
+        if (personPredicate.test(person) == true) {
             return animalHashMap.get(name);
         }
         return animalHashMap.get(name + person);
@@ -72,12 +76,17 @@ public class PetFileCabinet {
      * Вывод на экран списка животных в отсортированном порядке
      */
     public void printAnimal() {
+        /* Старый вариант
         Set<Animal> animalSet = new HashSet<>(animalHashMap.values());
         List<Animal> animalList = new ArrayList<>();
         animalList.addAll(animalSet);
-        Collections.sort(animalList, new AnimalComparator());
-        for (Animal animal : animalList) {
-            System.out.println(animal);
-        }
+        animalList.sort(new AnimalComparator());
+        animalList.forEach(System.out::println); */
+
+        animalHashMap.values()
+                .stream()
+                .distinct()
+                .sorted(new AnimalComparator())
+                .forEach(System.out::println);
     }
 }
