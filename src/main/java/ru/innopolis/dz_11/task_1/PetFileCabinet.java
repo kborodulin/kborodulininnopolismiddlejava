@@ -1,6 +1,9 @@
 package ru.innopolis.dz_11.task_1;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
 
 /**
@@ -12,10 +15,6 @@ public class PetFileCabinet {
     // key -> Кличка || Кличка + Хозяин || UUID; value -> Животное
     private Map<String, Animal> animalHashMap = new HashMap<>();
 
-    public Map<String, List<Person>> getListHashMap() {
-        return listHashMap;
-    }
-
     public Map<String, Animal> getAnimalHashMap() {
         return animalHashMap;
     }
@@ -24,6 +23,16 @@ public class PetFileCabinet {
      * Добавление животного
      */
     public void addAnimal(Animal animal) throws Exception {
+        /* Старый вариант без Predicate
+        // Проверка животного на дубликат в системе
+        if (listHashMap.containsKey(animal.getName())) {
+            List<Person> personList = listHashMap.get(animal.getName());
+            if (personList.contains(animal.getPerson())) {
+                throw new Exception("Животное уже есть в системе!!!" +
+                        " Кличка: " + animal.getName() + " Хозяин: " + animal.getPerson());
+            }
+         */
+
         // Проверка животного на дубликат в системе
         Predicate<String> stringPredicate = x -> listHashMap.containsKey(x);
         if (stringPredicate.test(animal.getName())) {
@@ -54,11 +63,15 @@ public class PetFileCabinet {
      * Поиск животного
      */
     public Animal findAnimalByName(String name, Person person) {
-        Predicate<Person> personPredicate = x -> x == null;
-        if (personPredicate.test(person) == true) {
+        /* Старый вариант
+        if (person == null) {
             return animalHashMap.get(name);
         }
         return animalHashMap.get(name + person);
+        */
+
+        Predicate<Person> personPredicate = x -> x == null;
+        return personPredicate.test(person) ? animalHashMap.get(name) : animalHashMap.get(name + person);
     }
 
     /**
@@ -80,8 +93,10 @@ public class PetFileCabinet {
         Set<Animal> animalSet = new HashSet<>(animalHashMap.values());
         List<Animal> animalList = new ArrayList<>();
         animalList.addAll(animalSet);
-        animalList.sort(new AnimalComparator());
-        animalList.forEach(System.out::println); */
+        Collections.sort(animalList, new AnimalComparator());
+        for (Animal animal : animalList) {
+            System.out.println(animal);
+        }*/
 
         animalHashMap.values()
                 .stream()
