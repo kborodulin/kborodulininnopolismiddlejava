@@ -2,7 +2,6 @@ package ru.innopolis.dz_17.task_2;
 
 import java.sql.*;
 import java.time.LocalDate;
-import java.util.List;
 
 public class App {
     /**
@@ -96,7 +95,7 @@ public class App {
      * намеренно ввести некорректные данные на последней операции,
      * что бы транзакция откатилась к логической точке SAVEPOINT A
      */
-    public void task_4b(ConnectionDB connectionDB) throws SQLException {
+    public void task_4b(ConnectionDB connectionDB) {
         try (Connection connection = connectionDB.connectDB()) {
             connection.setAutoCommit(false);
             Statement statement = connection.createStatement();

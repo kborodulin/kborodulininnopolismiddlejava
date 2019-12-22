@@ -11,54 +11,68 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.Assert.fail;
+
 public class AppTest {
     private Connection connection;
     private List<Object> objectList = new ArrayList<>();
+    private App app = new App();
 
     @Before
     public void openConnectionDB() throws SQLException {
         connection = ConnectionDB.connectDB();
-    }
-
-    @Before
-    public void init() {
         objectList.add(1);
         objectList.add("test1");
         objectList.add(Date.valueOf(LocalDate.now()));
     }
 
-    @After
-    public void closeConnectionDB() throws SQLException {
-        connection.close();
-    }
-
     @Test
-    public void task_2aTest() {
-        App app = new App();
-        app.task_2a(connection, objectList);
+    public void task_2aTest() throws SQLException {
+        try {
+            app.task_2a(connection, objectList);
+        } catch (Exception e) {
+            fail("Exception " + e);
+        }
     }
 
     @Test
     public void task_2bTest() {
-        App app = new App();
-        app.task_2b(connection);
+        try {
+            app.task_2b(connection);
+        } catch (SQLException e) {
+            fail("Exception " + e);
+        }
     }
 
     @Test
     public void task_3Test() {
-        App app = new App();
-        app.task_3(connection);
+        try {
+            app.task_3(connection);
+        } catch (SQLException e) {
+            fail("Exception " + e);
+        }
     }
 
     @Test
     public void task_4aTest() {
-        App app = new App();
-        app.task_4a(connection);
+        try {
+            app.task_4a(connection);
+        } catch (SQLException e) {
+            fail("Exception " + e);
+        }
     }
 
     @Test
     public void task_4bTest() {
-        App app = new App();
-        app.task_4b(connection);
+        try {
+            app.task_4b(connection);
+        } catch (SQLException e) {
+            fail("Exception " + e);
+        }
+    }
+
+    @After
+    public void closeConnectionDB() throws SQLException {
+        connection.close();
     }
 }
