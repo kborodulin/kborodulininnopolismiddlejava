@@ -91,4 +91,27 @@ public class UserDaoImpl implements UserDao {
             LOGGER.error("{}", e);
         }
     }
+
+    @Override
+    public User getUserById(int id) {
+        User user = new User();
+        try (Connection connection = connectionManager.connectDB()) {
+            String sql = "select * from users where id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                user.setId(resultSet.getInt("id"));
+                user.setLogin(resultSet.getString("login"));
+                user.setSurname(resultSet.getString("surname"));
+                user.setPatronymic(resultSet.getString("patronymic"));
+                user.setName(resultSet.getString("name"));
+                user.setEmail(resultSet.getString("email"));
+                user.setPhone(resultSet.getString("phone"));
+            }
+        } catch (SQLException e) {
+            LOGGER.error("{}", e);
+        }
+        return user;
+    }
 }
