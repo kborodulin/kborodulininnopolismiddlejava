@@ -31,6 +31,8 @@
             <th>${user.name}</th>
             <th>${user.email}</th>
             <th>${user.phone}</th>
+            <th><a href="/delete/${user.id}">Изменить</a></th>
+            <th><a href="delete?id=${user.id}">Удалить</a></th>
         </tr>
     </c:forEach>
 </table>

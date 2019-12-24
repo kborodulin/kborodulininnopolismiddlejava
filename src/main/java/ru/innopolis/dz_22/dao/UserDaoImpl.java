@@ -59,4 +59,16 @@ public class UserDaoImpl implements UserDao {
         }
         return users;
     }
+
+    @Override
+    public void deleteUser(int id) {
+        try (Connection connection = connectionManager.connectDB()) {
+            String sqlUser = "delete from users where id = ?";
+            PreparedStatement preparedStatementUser = connection.prepareStatement(sqlUser);
+            preparedStatementUser.setInt(1, id);
+            preparedStatementUser.execute();
+        } catch (SQLException e) {
+            LOGGER.error("{}", e);
+        }
+    }
 }
