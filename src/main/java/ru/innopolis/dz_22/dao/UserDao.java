@@ -14,4 +14,6 @@ public interface UserDao {
     void updateUser(User user);
 
     User getUserById(int id);
+
+    Boolean authorization(String user, String password);
 }

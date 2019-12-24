@@ -114,4 +114,19 @@ public class UserDaoImpl implements UserDao {
         }
         return user;
     }
+
+    @Override
+    public Boolean authorization(String user, String password) {
+        try (Connection connection = connectionManager.connectDB()) {
+            String sql = "select * from users where login = ? and password = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, user);
+            preparedStatement.setString(2, password);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) return true;
+        } catch (SQLException e) {
+            LOGGER.error("{}", e);
+        }
+        return false;
+    }
 }
