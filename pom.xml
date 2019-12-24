@@ -7,16 +7,20 @@
     <groupId>ru.innopolis.javamiddle</groupId>
     <artifactId>kborodulininnopolismiddlejava</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <postgresql.version>42.2.8</postgresql.version>
+        <failOnMissingWebXml>false</failOnMissingWebXml>
+        <postgresql.version>42.2.9</postgresql.version>
         <junit.version>4.4</junit.version>
         <mockito-all.version>1.10.19</mockito-all.version>
         <logback-classic.version>1.2.3</logback-classic.version>
         <commons-lang3.version>3.9</commons-lang3.version>
+        <javax.servlet-api>4.0.1</javax.servlet-api>
+        <jstl>1.2</jstl>
     </properties>
 
     <dependencies>
@@ -46,6 +50,17 @@
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>${logback-classic.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${javax.servlet-api}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>${jstl}</version>
         </dependency>
     </dependencies>
 

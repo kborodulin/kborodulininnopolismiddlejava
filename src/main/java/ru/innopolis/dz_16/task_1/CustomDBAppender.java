@@ -1,7 +1,7 @@
 package ru.innopolis.dz_16.task_1;
 
-import ch.qos.logback.classic.spi.ILoggingEvent;
-import ch.qos.logback.core.db.DBAppenderBase;
+//import ch.qos.logback.classic.spi.ILoggingEvent;
+//import ch.qos.logback.core.db.DBAppenderBase;
 
 import java.lang.reflect.Method;
 import java.sql.Connection;
@@ -11,7 +11,7 @@ import java.sql.PreparedStatement;
  * https://github.com/qos-ch/logback/blob/master/logback-access/src/main/java/ch/qos/logback/access/db/DBAppender.java
  */
 
-public class CustomDBAppender extends DBAppenderBase<ILoggingEvent> {
+public class CustomDBAppender { /*extends DBAppenderBase<ILoggingEvent> {
     protected static final Method GET_GENERATED_KEYS_METHOD;
     protected static final String INSERTSQL;
 
@@ -60,5 +60,5 @@ public class CustomDBAppender extends DBAppenderBase<ILoggingEvent> {
 
     @Override
     protected void secondarySubAppend(ILoggingEvent eventObject, Connection connection, long eventId) throws Throwable {
-    }
+    }*/
 }
