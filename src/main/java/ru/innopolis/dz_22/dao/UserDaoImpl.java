@@ -71,4 +71,24 @@ public class UserDaoImpl implements UserDao {
             LOGGER.error("{}", e);
         }
     }
+
+    @Override
+    public void updateUser(User user) {
+        try (Connection connection = connectionManager.connectDB()) {
+            String sqlUser = "update users set login = ?, password = ?, surname = ?, " +
+                    "patronymic = ?, name = ?, email = ?, phone = ? where id = ?";
+            PreparedStatement preparedStatementUser = connection.prepareStatement(sqlUser);
+            preparedStatementUser.setString(1, user.getLogin());
+            preparedStatementUser.setString(2, user.getPassword());
+            preparedStatementUser.setString(3, user.getSurname());
+            preparedStatementUser.setString(4, user.getPatronymic());
+            preparedStatementUser.setString(5, user.getName());
+            preparedStatementUser.setString(6, user.getEmail());
+            preparedStatementUser.setString(7, user.getPhone());
+            preparedStatementUser.setInt(8, user.getId());
+            preparedStatementUser.execute();
+        } catch (SQLException e) {
+            LOGGER.error("{}", e);
+        }
+    }
 }

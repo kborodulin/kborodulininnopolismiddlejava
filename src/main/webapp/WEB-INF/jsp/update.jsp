@@ -4,42 +4,13 @@
 <html>
 
 <head>
-    <title>Users</title>
+    <title>Обновить</title>
 </head>
 
 <body>
-<h2 align="center">Список пользователей с контактными данными </h2>
+<h2 align="center">Обновить пользователя</h2>
 
-<table border="1" align="center">
-    <tr>
-        <th>ИД</th>
-        <th>Логин</th>
-        <th>Фамилия</th>
-        <th>Имя</th>
-        <th>Отчество</th>
-        <th>Почта</th>
-        <th>Телефон</th>
-        <th>Изменить</th>
-        <th>Удалить</th>
-    </tr>
-    <c:forEach items="${users}" var="user">
-        <tr>
-            <th>${user.id} </th>
-            <th>${user.login}</th>
-            <th>${user.surname}</th>
-            <th>${user.patronymic}</th>
-            <th>${user.name}</th>
-            <th>${user.email}</th>
-            <th>${user.phone}</th>
-            <th><a href="update?id=${user.id}">Изменить</a></th>
-            <th><a href="delete?id=${user.id}">Удалить</a></th>
-        </tr>
-    </c:forEach>
-</table>
-
-<h3 align="center">Добавить нового пользователя</h3>
-
-<form method="post" action="index" modelAttribute="user">
+<form method="post" action="update" modelAttribute="user">
     <table align="center">
         <tr>
             <td style="font-weight: bold"><label>Логин</label></td>
@@ -70,7 +41,7 @@
             <td><input name="phone" type="text"/></td>
         </tr>
         <tr>
-            <td colspan="2" align="center"><input type="submit" value="Сохранить"></td>
+            <td colspan="2" align="center"><input type="submit" value="Обновить"></td>
         </tr>
     </table>
 </form>
