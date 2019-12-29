@@ -1,6 +1,8 @@
 package ru.innopolis.dz_22.pojo;
 
 
+import java.util.Objects;
+
 public class User {
     private int id;
     private String login;
@@ -73,6 +75,26 @@ public class User {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return id == user.id &&
+                Objects.equals(login, user.login) &&
+                Objects.equals(password, user.password) &&
+                Objects.equals(surname, user.surname) &&
+                Objects.equals(name, user.name) &&
+                Objects.equals(patronymic, user.patronymic) &&
+                Objects.equals(email, user.email) &&
+                Objects.equals(phone, user.phone);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, login, password, surname, name, patronymic, email, phone);
     }
 
     @Override

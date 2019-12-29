@@ -13,6 +13,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static ru.innopolis.dz_22.utils.ServletUtils.*;
+
 public class UserDaoImpl implements UserDao {
     private static final Logger LOGGER = LoggerFactory.getLogger(UserDaoImpl.class);
     private ConnectionManager connectionManager = new ConnectionManagerImpl();
@@ -37,7 +39,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public List<User> listAllUser() {
+    public List<User> getAllUsers() {
         List<User> users = new ArrayList<>();
         try (Connection connection = connectionManager.connectDB()) {
             String sqlUser = "select * from users";
@@ -45,13 +47,13 @@ public class UserDaoImpl implements UserDao {
             ResultSet resultSet = preparedStatementUser.executeQuery();
             while (resultSet.next()) {
                 User user = new User();
-                user.setId(resultSet.getInt("id"));
-                user.setLogin(resultSet.getString("login"));
-                user.setSurname(resultSet.getString("surname"));
-                user.setPatronymic(resultSet.getString("patronymic"));
-                user.setName(resultSet.getString("name"));
-                user.setEmail(resultSet.getString("email"));
-                user.setPhone(resultSet.getString("phone"));
+                user.setId(resultSet.getInt(ID));
+                user.setLogin(resultSet.getString(LOGIN));
+                user.setSurname(resultSet.getString(SURNAME));
+                user.setPatronymic(resultSet.getString(PATRONYMIC));
+                user.setName(resultSet.getString(NAME));
+                user.setEmail(resultSet.getString(EMAIL));
+                user.setPhone(resultSet.getString(PHONE));
                 users.add(user);
             }
         } catch (SQLException e) {
@@ -101,13 +103,13 @@ public class UserDaoImpl implements UserDao {
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                user.setId(resultSet.getInt("id"));
-                user.setLogin(resultSet.getString("login"));
-                user.setSurname(resultSet.getString("surname"));
-                user.setPatronymic(resultSet.getString("patronymic"));
-                user.setName(resultSet.getString("name"));
-                user.setEmail(resultSet.getString("email"));
-                user.setPhone(resultSet.getString("phone"));
+                user.setId(resultSet.getInt(ID));
+                user.setLogin(resultSet.getString(LOGIN));
+                user.setSurname(resultSet.getString(SURNAME));
+                user.setPatronymic(resultSet.getString(PATRONYMIC));
+                user.setName(resultSet.getString(NAME));
+                user.setEmail(resultSet.getString(EMAIL));
+                user.setPhone(resultSet.getString(PHONE));
             }
         } catch (SQLException e) {
             LOGGER.error("{}", e);
@@ -116,7 +118,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public Boolean authorization(String user, String password) {
+    public boolean isAuthorized(String user, String password) {
         try (Connection connection = connectionManager.connectDB()) {
             String sql = "select * from users where login = ? and password = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);

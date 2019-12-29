@@ -7,20 +7,21 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import static ru.innopolis.dz_22.utils.ServletUtils.*;
+
 public class ConnectionManagerImpl implements ConnectionManager {
     private static final Logger LOGGER = LoggerFactory.getLogger(ConnectionManagerImpl.class);
 
     @Override
     public Connection connectDB() {
-        String url = "jdbc:postgresql://localhost:5432/dz_22";
-        String user = "postgres";
-        String password = "postgres";
+        LOGGER.debug("Try connection with {} {} {}", DB_URL, DB_LOGIN, DB_PASSWORD);
         Connection connection = null;
         try {
-            Class.forName("org.postgresql.Driver");
-            connection = DriverManager.getConnection(url, user, password);
+            Class.forName(DB_DRIVER);
+            connection = DriverManager.getConnection(DB_URL, DB_LOGIN, DB_PASSWORD);
+            LOGGER.debug("Connection SUCCESS");
         } catch (SQLException | ClassNotFoundException e) {
-            LOGGER.error("Ошибка подключения к postgres: {}", e);
+            LOGGER.error("Connection error: {}", e.getMessage());
         }
         return connection;
     }

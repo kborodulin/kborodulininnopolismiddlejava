@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+
+import static ru.innopolis.dz_22.utils.ServletUtils.*;
 
 @WebServlet("/index")
 public class UserServlet extends HttpServlet {
@@ -21,23 +24,25 @@ public class UserServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        LOGGER.debug("doGet: /index");
         // Выведем на форму список всех пользователей
-        req.setAttribute("users", userDao.listAllUser());
-        req.getRequestDispatcher("WEB-INF/jsp/index.jsp").forward(req, resp);
+        req.setAttribute("users", userDao.getAllUsers());
+        req.getRequestDispatcher(JSP_PATH_INDEX).forward(req, resp);
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        LOGGER.debug("doPost: /index");
         // С клиентской формы создаем нового пользователя
-        req.setCharacterEncoding("UTF-8");
-        resp.setCharacterEncoding("UTF-8");
-        user.setLogin(req.getParameter("login"));
-        user.setPassword(req.getParameter("password"));
-        user.setName(req.getParameter("name"));
-        user.setSurname(req.getParameter("surname"));
-        user.setPatronymic(req.getParameter("patronymic"));
-        user.setEmail(req.getParameter("email"));
-        user.setPhone(req.getParameter("phone"));
+        req.setCharacterEncoding(StandardCharsets.UTF_8.name());
+        resp.setCharacterEncoding(StandardCharsets.UTF_8.name());
+        user.setLogin(req.getParameter(LOGIN));
+        user.setPassword(req.getParameter(PASSWORD));
+        user.setName(req.getParameter(NAME));
+        user.setSurname(req.getParameter(SURNAME));
+        user.setPatronymic(req.getParameter(PATRONYMIC));
+        user.setEmail(req.getParameter(EMAIL));
+        user.setPhone(req.getParameter(PHONE));
         userDao.addUser(user);
         LOGGER.info("Добавлен пользователь: {}", user);
         resp.sendRedirect("index");

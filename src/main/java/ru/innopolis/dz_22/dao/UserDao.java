@@ -7,7 +7,7 @@ import java.util.List;
 public interface UserDao {
     void addUser(User user);
 
-    List<User> listAllUser();
+    List<User> getAllUsers();
 
     void deleteUser(int id);
 
@@ -15,5 +15,5 @@ public interface UserDao {
 
     User getUserById(int id);
 
-    Boolean authorization(String user, String password);
+    boolean isAuthorized(String user, String password);
 }
