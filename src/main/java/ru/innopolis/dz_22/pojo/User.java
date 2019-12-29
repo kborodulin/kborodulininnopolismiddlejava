@@ -13,68 +13,85 @@ public class User {
     private String email;
     private String phone;
 
-    public int getId() {
-        return id;
+    private User(Builder builder) {
+        this.id = builder.id;
+        this.login = builder.login;
+        this.password = builder.password;
+        this.surname = builder.surname;
+        this.name = builder.name;
+        this.patronymic = builder.patronymic;
+        this.email = builder.email;
+        this.phone = builder.phone;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public static class Builder {
+        private int id;
+        private String login;
+        private String password;
+        private String surname;
+        private String name;
+        private String patronymic;
+        private String email;
+        private String phone;
+
+        public Builder(String login, String password, String surname, String name, String patronymic) {
+            this.login = login;
+            this.password = password;
+            this.surname = surname;
+            this.name = name;
+            this.patronymic = patronymic;
+        }
+
+        public Builder setId(int id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder setEmail(String email) {
+            this.email = email;
+            return this;
+        }
+
+        public Builder setPhone(String phone) {
+            this.phone = phone;
+            return this;
+        }
+
+        public User build() {
+            return new User(this);
+        }
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getLogin() {
         return login;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
     public String getPassword() {
         return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getSurname() {
         return surname;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getPatronymic() {
         return patronymic;
     }
 
-    public void setPatronymic(String patronymic) {
-        this.patronymic = patronymic;
-    }
-
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getPhone() {
         return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
     }
 
     @Override

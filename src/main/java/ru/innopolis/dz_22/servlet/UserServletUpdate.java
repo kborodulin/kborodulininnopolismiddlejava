@@ -20,7 +20,7 @@ import static ru.innopolis.dz_22.utils.ServletUtils.*;
 public class UserServletUpdate extends HttpServlet {
     private static final Logger LOGGER = LoggerFactory.getLogger(UserServletUpdate.class);
     private UserDao userDao = new UserDaoImpl();
-    private User user = new User();
+    private User user;
     private Integer id;
 
     @Override
@@ -36,14 +36,13 @@ public class UserServletUpdate extends HttpServlet {
         // Обновляем пользователя
         req.setCharacterEncoding(StandardCharsets.UTF_8.name());
         resp.setCharacterEncoding(StandardCharsets.UTF_8.name());
-        user.setId(id);
-        user.setLogin(req.getParameter(LOGIN));
-        user.setPassword(req.getParameter(PASSWORD));
-        user.setName(req.getParameter(NAME));
-        user.setSurname(req.getParameter(SURNAME));
-        user.setPatronymic(req.getParameter(PATRONYMIC));
-        user.setEmail(req.getParameter(EMAIL));
-        user.setPhone(req.getParameter(PHONE));
+        user = new User.Builder(
+                req.getParameter(LOGIN),
+                req.getParameter(PASSWORD),
+                req.getParameter(SURNAME),
+                req.getParameter(NAME),
+                req.getParameter(PATRONYMIC)
+        ).setId(id).setEmail(req.getParameter(EMAIL)).setPhone(req.getParameter(PHONE)).build();
         userDao.updateUser(user);
         LOGGER.info("Пользователь обновлен: {}", user);
         resp.sendRedirect("index");

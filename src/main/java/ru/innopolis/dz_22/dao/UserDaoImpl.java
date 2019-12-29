@@ -46,14 +46,13 @@ public class UserDaoImpl implements UserDao {
             PreparedStatement preparedStatementUser = connection.prepareStatement(sqlUser);
             ResultSet resultSet = preparedStatementUser.executeQuery();
             while (resultSet.next()) {
-                User user = new User();
-                user.setId(resultSet.getInt(ID));
-                user.setLogin(resultSet.getString(LOGIN));
-                user.setSurname(resultSet.getString(SURNAME));
-                user.setPatronymic(resultSet.getString(PATRONYMIC));
-                user.setName(resultSet.getString(NAME));
-                user.setEmail(resultSet.getString(EMAIL));
-                user.setPhone(resultSet.getString(PHONE));
+                User user = new User.Builder(
+                        resultSet.getString(LOGIN),
+                        resultSet.getString(PASSWORD),
+                        resultSet.getString(SURNAME),
+                        resultSet.getString(PATRONYMIC),
+                        resultSet.getString(NAME)
+                ).setId(resultSet.getInt(ID)).setEmail(resultSet.getString(EMAIL)).setPhone(resultSet.getString(PHONE)).build();
                 users.add(user);
             }
         } catch (SQLException e) {
@@ -96,20 +95,20 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User getUserById(int id) {
-        User user = new User();
+        User user = null;
         try (Connection connection = connectionManager.connectDB()) {
             String sql = "select * from users where id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                user.setId(resultSet.getInt(ID));
-                user.setLogin(resultSet.getString(LOGIN));
-                user.setSurname(resultSet.getString(SURNAME));
-                user.setPatronymic(resultSet.getString(PATRONYMIC));
-                user.setName(resultSet.getString(NAME));
-                user.setEmail(resultSet.getString(EMAIL));
-                user.setPhone(resultSet.getString(PHONE));
+                user = new User.Builder(
+                        resultSet.getString(LOGIN),
+                        resultSet.getString(PASSWORD),
+                        resultSet.getString(SURNAME),
+                        resultSet.getString(PATRONYMIC),
+                        resultSet.getString(NAME)
+                ).setId(resultSet.getInt(ID)).setEmail(resultSet.getString(EMAIL)).setPhone(resultSet.getString(PHONE)).build();
             }
         } catch (SQLException e) {
             LOGGER.error("{}", e);

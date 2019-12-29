@@ -20,7 +20,7 @@ import static ru.innopolis.dz_22.utils.ServletUtils.*;
 public class UserServlet extends HttpServlet {
     private static final Logger LOGGER = LoggerFactory.getLogger(UserServlet.class);
     private UserDao userDao = new UserDaoImpl();
-    private User user = new User();
+    private User user;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -36,13 +36,13 @@ public class UserServlet extends HttpServlet {
         // С клиентской формы создаем нового пользователя
         req.setCharacterEncoding(StandardCharsets.UTF_8.name());
         resp.setCharacterEncoding(StandardCharsets.UTF_8.name());
-        user.setLogin(req.getParameter(LOGIN));
-        user.setPassword(req.getParameter(PASSWORD));
-        user.setName(req.getParameter(NAME));
-        user.setSurname(req.getParameter(SURNAME));
-        user.setPatronymic(req.getParameter(PATRONYMIC));
-        user.setEmail(req.getParameter(EMAIL));
-        user.setPhone(req.getParameter(PHONE));
+        user = new User.Builder(
+                req.getParameter(LOGIN),
+                req.getParameter(PASSWORD),
+                req.getParameter(NAME),
+                req.getParameter(SURNAME),
+                req.getParameter(PATRONYMIC)
+        ).setEmail(req.getParameter(EMAIL)).setPhone(req.getParameter(PHONE)).build();
         userDao.addUser(user);
         LOGGER.info("Добавлен пользователь: {}", user);
         resp.sendRedirect("index");
