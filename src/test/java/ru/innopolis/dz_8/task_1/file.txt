@@ -1,0 +1,11 @@
+{
+	"name":"Test10",
+	"id":1,
+	"resident":false,
+	"passport":{
+		"id":100,
+		"seria":"test100",
+		"nomer":"null"
+	},
+	"age":10
+}
